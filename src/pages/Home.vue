@@ -1,6 +1,8 @@
 <template>
     <div>
-        <navigation-menu></navigation-menu>
+        <div class="flex justify-center items-center p-5">
+            <navigation-menu></navigation-menu>
+        </div>
 
     </div>
 </template>

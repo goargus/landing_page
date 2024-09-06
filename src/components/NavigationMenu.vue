@@ -1,39 +1,14 @@
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">create-vue</a>, the official Vue + Vite
-    starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support" target="_blank">Vue Docs Scaling up Guide</a>.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <nav
+    class="flex flex-wrap gap-10 items-center self-center py-6 pr-16 pl-20 text-3xl bg-gray-100 shadow-lg rounded-[62px] text-neutral-500 max-md:px-5 max-md:max-w-full">
+    <a href="#inicio" class="self-stretch my-auto font-bold">Inicio</a>
+    <a href="#portafolio" class="self-stretch my-auto">Portafolio</a>
+    <a href="#acerca-de-nosotros" class="self-stretch my-auto">Acerca de Nosotros</a>
+    <a href="#contactanos" class="self-stretch my-auto">Contáctanos</a>
+  </nav>
 </template>
 
-
 <script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String,
-})
-
-const count = ref(0)
 </script>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<style scoped></style>
