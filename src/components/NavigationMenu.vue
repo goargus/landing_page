@@ -1,15 +1,30 @@
 <template>
   <nav class="nav-container nav-font nav-shadow">
-    <a href="#inicio" class="home-link">Inicio</a>
-    <a href="#portafolio" class="menu-item">Portafolio</a>
-    <a href="#acerca-de-nosotros" class="menu-item">Acerca de Nosotros</a>
-    <a href="#contactanos" class="menu-item">Contáctanos</a>
+    <a v-for="(item, index) in navItems" :key="index" :href="item.href" class="menu-item">
+      {{ item.title }}
+    </a>
   </nav>
 </template>
 
 <script lang="ts">
+import { NavItem } from '../types/navItem'
+
 export default {
   name: 'NavigationMenu',
+  props: {
+    navItems: {
+      type: Array as () => NavItem[],
+      required: true,
+      validator(items: NavItem[]) {
+        return items.every(item => {
+          return (
+            typeof item.title === 'string' &&
+            typeof item.href === 'string'
+          );
+        });
+      }
+    }
+  }
 };
 </script>
 

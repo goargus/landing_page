@@ -6,7 +6,7 @@
                 <div class="grid grid-cols-1 gap-4">
 
                     <div class="flex justify-center items-center p-5">
-                        <navigation-menu></navigation-menu>
+                        <navigation-menu :navItems="navItems"></navigation-menu>
                     </div>
 
                     <div class="p-3">
@@ -30,12 +30,13 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavigationMenu from '../components/NavigationMenu.vue';
 import HeaderBanner from '../components/HeaderBanner.vue';
 import OfferingSection from '../components/OfferingSection.vue';
 import Portfolio from '../components/Portfolio.vue';
 import FooterMenu from '../components/FooterMenu.vue';
+import { NavItem } from '../types/navItem'
 
 export default {
     name: 'Home',
@@ -45,6 +46,16 @@ export default {
         OfferingSection,
         Portfolio,
         FooterMenu,
+    },
+    data() {
+        return {
+            navItems: [
+                { title: 'Inicio', href: '#inicio' },
+                { title: 'Portafolio', href: '#portafolio' },
+                { title: 'Acerca de Nosotros', href: '#acerca-de-nosotros' },
+                { title: 'Contáctanos', href: '#contactanos' },
+            ] as NavItem[],
+        }
     }
 }
 </script>
