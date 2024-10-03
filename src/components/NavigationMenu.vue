@@ -1,14 +1,33 @@
 <template>
-  <nav
-    class="flex flex-wrap gap-10 items-center self-center py-6 pr-16 pl-20 text-3xl bg-gray-100 shadow-lg rounded-[62px] text-neutral-500 max-md:px-5 max-md:max-w-full">
-    <a href="#inicio" class="text-[#717171] font-inter text-[30px] font-bold leading-normal">Inicio</a>
-    <a href="#portafolio" class="self-stretch my-auto">Portafolio</a>
-    <a href="#acerca-de-nosotros" class="self-stretch my-auto">Acerca de Nosotros</a>
-    <a href="#contactanos" class="self-stretch my-auto">Contáctanos</a>
+  <nav class="nav-container nav-font nav-shadow">
+    <a href="#inicio" class="home-link">Inicio</a>
+    <a href="#portafolio" class="menu-item">Portafolio</a>
+    <a href="#acerca-de-nosotros" class="menu-item">Acerca de Nosotros</a>
+    <a href="#contactanos" class="menu-item">Contáctanos</a>
   </nav>
 </template>
 
-<script setup>
+<script lang="ts">
+export default {
+  name: 'NavigationMenu',
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+.nav-container {
+  @apply inline-flex items-center gap-[79px] py-6 pr-[65px] pl-[74px] rounded-[62px];
+  box-shadow: -10px -10px 30px 0px #FFF, 10px 10px 30px 0px rgba(174, 174, 192, 0.40);
+}
+
+.nav-font {
+  @apply text-3xl text-gray font-normal;
+}
+
+.home-link {
+  @apply text-gray font-inter text-[30px] leading-normal;
+}
+
+.menu-item {
+  @apply self-stretch my-auto;
+}
+</style>

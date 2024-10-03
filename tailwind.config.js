@@ -11,11 +11,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       },
       colors: {
         gray: '#717171',
-      },
+        snowGray: "#F0F0F3"
+      }
     },
   },
   plugins: [

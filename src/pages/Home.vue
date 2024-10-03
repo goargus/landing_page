@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen bg-snowGray">
         <div class="flex-grow p-5">
             <div class="p-5">
 
@@ -10,15 +10,15 @@
                     </div>
 
                     <div class="p-3">
-                        banner
+                        <header-banner></header-banner>
                     </div>
 
-                    <div class="p-4 justify-center  items-center">
-                        <offering-section></offering-section>
+                    <div class="flex p-4 justify-center items-center">
+                        <offering-section title="lo que ofrecemos"></offering-section>
                     </div>
 
-                    <div class="p-4">
-                        nuestros diseños
+                    <div class="flex p-4 justify-center items-center">
+                        <portfolio title="nuestros diseños"></portfolio>
                     </div>
 
                     <div class="p-4 mt-auto">
@@ -32,17 +32,19 @@
 
 <script>
 import NavigationMenu from '../components/NavigationMenu.vue';
-import FooterMenu from '../components/FooterMenu.vue';
+import HeaderBanner from '../components/HeaderBanner.vue';
 import OfferingSection from '../components/OfferingSection.vue';
+import Portfolio from '../components/Portfolio.vue';
+import FooterMenu from '../components/FooterMenu.vue';
 
 export default {
     name: 'Home',
     components: {
         NavigationMenu,
+        HeaderBanner,
+        OfferingSection,
+        Portfolio,
         FooterMenu,
-        OfferingSection
     }
 }
 </script>
-
-<style></style>
