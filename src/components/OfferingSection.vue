@@ -1,7 +1,7 @@
 <template>
     <section class="flex flex-col w-full text-center max-w-[1167px] text-neutral-600 max-md:max-w-full">
         <h2 class="text-6xl tracking-tighter leading-none lowercase max-md:max-w-full max-md:text-4xl">
-            Lo Que Ofrecemos
+            {{ title }}
         </h2>
         <div class="flex flex-wrap gap-10 items-center mt-24 w-full max-md:mt-10 max-md:max-w-full">
             <OfferingCard v-for="(offering, index) in offerings" :key="index" :image-src="offering.imageSrc"
@@ -14,10 +14,16 @@
 import { defineComponent } from 'vue';
 import OfferingCard from '../components/OfferingCard.vue'
 
-export default defineComponent({
+export default {
     name: 'OfferingSection',
     components: {
         OfferingCard,
+    },
+    props: {
+        title: {
+            type: String,
+            required: true,
+        }
     },
     data() {
         return {
@@ -43,5 +49,5 @@ export default defineComponent({
             ],
         };
     },
-});
+};
 </script>
