@@ -1,24 +1,21 @@
-<script setup>
-import Home from './pages/Home.vue';
-</script>
-
 <template>
-  <home></home>
+  <div class="flex flex-col justify-center items-center p-5 bg-snowGray">
+    <navigation-menu :navItems="navItems"></navigation-menu>
+    <router-view></router-view>
+    <FooterMenuVue></FooterMenuVue>
+  </div>
 </template>
 
-<style scoped>
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
+<script setup lang="ts">
+import NavigationMenu from './components/NavigationMenu.vue'
+import FooterMenuVue from './components/FooterMenu.vue';
+import { NavItem } from './types/navItem'
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
 
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-} */
-</style>
+const navItems = [
+  { title: 'Inicio', href: '/' },
+  { title: 'Portafolio', href: '/portfolio' },
+  { title: 'Acerca de Nosotros', href: '/about' },
+  { title: 'Contáctanos', href: '/contact' },
+] as NavItem[];
+</script>

@@ -1,8 +1,10 @@
 <template>
   <nav class="nav-container nav-font nav-shadow">
-    <a v-for="(item, index) in navItems" :key="index" :href="item.href" class="menu-item">
+    <RouterLink v-for="(item, index) in navItems" :key="index" :to="item.href"
+      :class="index === 0 ? 'home-link' : 'menu-item'">
       {{ item.title }}
-    </a>
+    </RouterLink>
+
   </nav>
 </template>
 
