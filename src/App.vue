@@ -2,6 +2,7 @@
   <div class="flex flex-col justify-center items-center p-5 bg-snowGray">
     <navigation-menu :navItems="navItems"></navigation-menu>
     <router-view></router-view>
+    <FooterMenuVue></FooterMenuVue>
   </div>
 </template>
 
