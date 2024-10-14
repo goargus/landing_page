@@ -1,6 +1,6 @@
 <template>
     <footer
-        class="flex relative gap-10 items-center px-7 mt-44 min-h-[193px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+        class="flex relative gap-10 items-center px-10 mt-44 min-h-[193fpx] max-md:px-5 max-md:mt-10 max-md:max-w-full">
 
         <img loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f02c129669cdff87917f5edbaeb38e16b2485e76d36fe627761acee18113fcb?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589"
@@ -28,15 +28,64 @@
             </div>
         </nav>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="1441" height="193" viewBox="0 0 1441 193" fill="none">
-            <path d="M1441 0H0V193H1441V0Z" fill="url(#paint0_linear_47_13)" />
-            <defs>
-                <linearGradient id="paint0_linear_47_13" x1="0" y1="96.5005" x2="1441" y2="96.5005"
-                    gradientUnits="userSpaceOnUse">
-                    <stop offset="8.15152e-07" stop-color="#072F2E" />
-                    <stop offset="1" stop-color="#090901" />
-                </linearGradient>
-            </defs>
-        </svg>
     </footer>
 </template>
+<style>
+footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  min-height: 193px;
+  background: linear-gradient(100deg, #00bfa3 0%, #090901 50%);
+  color: #00FFAA;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+
+nav ul li {
+  margin: 0.5rem 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  @apply text-lightGreen;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  nav ul {
+      text-align: center;
+  }
+
+  .social-icons {
+      margin-top: 1rem;
+  }
+}
+</style>

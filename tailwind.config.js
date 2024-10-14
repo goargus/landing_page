@@ -15,7 +15,8 @@ export default {
       },
       colors: {
         gray: '#717171',
-        snowGray: "#F0F0F3"
+        snowGray: "#F0F0F3",
+        lightGreen:"#00FFAA"
       }
     },
   },
