@@ -1,8 +1,12 @@
 <template>
-    <div>
+
+    <div class="w-full">
+        <header-banner></header-banner>
+    </div>
+
+    <!-- <div class="flex ">
         <div class="flex-grow p-5">
             <div class="p-5">
-
                 <div class="grid grid-cols-1 gap-4">
                     <div class="p-3">
                         <header-banner></header-banner>
@@ -18,13 +22,19 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script setup lang="ts">
-
 import HeaderBanner from '../components/HeaderBanner.vue';
 import OfferingSection from '../components/OfferingSection.vue';
 import Portfolio from '../components/Portfolio.vue';
-import FooterMenu from '../components/FooterMenu.vue';
+import { NavItem } from '../types/navItem';
+
+const navItems = [
+    { title: 'Inicio', href: '/' },
+    { title: 'Portafolio', href: '/portfolio' },
+    { title: 'Acerca de Nosotros', href: '/about' },
+    { title: 'Contáctanos', href: '/contact' },
+] as NavItem[];
 </script>
