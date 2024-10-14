@@ -15,10 +15,6 @@
                     <div class="flex p-4 justify-center items-center">
                         <portfolio title="nuestros diseños"></portfolio>
                     </div>
-
-                    <div class="p-4 mt-auto">
-                        <footer-menu> </footer-menu>
-                    </div>
                 </div>
             </div>
         </div>
