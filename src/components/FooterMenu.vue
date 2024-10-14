@@ -42,13 +42,11 @@ footer {
   color: #00FFAA;
 }
 
-/* Estilos para el logo */
 .logo {
   font-size: 2rem;
   font-weight: bold;
 }
 
-/* Estilos para los enlaces */
 nav ul {
   list-style: none;
   padding: 0;
@@ -65,7 +63,6 @@ nav ul li a {
   color: #00FFAA;
 }
 
-/* Estilos para los iconos de redes sociales */
 .social-icons {
   display: flex;
   gap: 1rem;
@@ -76,7 +73,6 @@ nav ul li a {
   height: 24px;
 }
 
-/* Ajustes responsivos */
 @media (max-width: 768px) {
   footer {
       flex-direction: column;
