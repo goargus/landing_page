@@ -60,7 +60,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-@apply text-lightGreen;
+  @apply text-lightGreen;
 }
 
 .social-icons {
