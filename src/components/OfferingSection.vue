@@ -13,6 +13,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import OfferingCard from '../components/OfferingCard.vue'
+import WebDesignImage from '../assets/websiteIcon.svg';
+import phoneimage from '../assets/phoneIcon.svg';
+import checkicon from '../assets/checkIcon.svg';
 
 export default {
     name: 'OfferingSection',
@@ -29,19 +32,19 @@ export default {
         return {
             offerings: [
                 {
-                    imageSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/8f3cd9f2deaa0b81e5edb1f9c81f9a3baa688635095075d5501bee1115995a3d?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589',
+                    imageSrc: WebDesignImage,
                     imageAlt: 'Diseño de Páginas Web',
                     title: 'Diseño de Páginas Web',
                     description: 'Creamos páginas web optimizadas para convertir visitantes en clientes potenciales, utilizando un diseño atractivo y una clara llamada a la acción.',
                 },
                 {
-                    imageSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/0b3cf1d040412cc99121d150abe0e063ebc227d69801e4fec323e7f9b1b539e0?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589',
+                    imageSrc: phoneimage,
                     imageAlt: 'Diseño Responsivo',
                     title: 'Diseño Responsivo',
                     description: 'Nuestros diseños son responsivos, asegurando que cada página web se vea genial y funcione perfectamente en todos los dispositivos, desde ordenadores hasta móviles.',
                 },
                 {
-                    imageSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/1316b544f5bd2cf8113d77b065e9c7bfa67c6e339c6cdb04aaeb68058420272c?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589',
+                    imageSrc: checkicon,
                     imageAlt: 'Soporte y Mantenimiento',
                     title: 'Soporte y Mantenimiento',
                     description: 'Ofrecemos soporte y mantenimiento continuo para que nuestros clientes no tengan que preocuparse por la parte técnica de sus sitios web.',
