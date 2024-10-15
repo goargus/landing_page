@@ -3,10 +3,10 @@
         <h2 class="text-6xl tracking-tighter leading-none lowercase max-md:max-w-full max-md:text-4xl">
             {{ title }}
         </h2>
-        <div class="flex flex-wrap gap-10 items-center mt-24 w-full max-md:mt-10 max-md:max-w-full">
-            <OfferingCard v-for="(offering, index) in offerings" :key="index" :image-src="offering.imageSrc"
-                :image-alt="offering.imageAlt" :title="offering.title" :description="offering.description" />
-        </div>
+        <div class="flex flex-wrap justify-center gap-10 mt-24 w-full max-md:mt-10 max-md:max-w-full">
+    <OfferingCard v-for="(offering, index) in offerings" :key="index" :image-src="offering.imageSrc"
+        :image-alt="offering.imageAlt" :title="offering.title" :description="offering.description" />
+</div>
     </section>
 </template>
 
