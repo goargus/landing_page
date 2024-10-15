@@ -32,8 +32,7 @@ export default {
 
 <style scoped>
 .nav-container {
-  @apply inline-flex items-center gap-[79px] py-6 pr-[65px] pl-[74px] rounded-[62px];
-  box-shadow: -10px -10px 30px 0px #FFF, 10px 10px 30px 0px rgba(174, 174, 192, 0.40);
+  @apply inline-flex items-center gap-[79px] py-6 pr-[65px] pl-[74px] rounded-[62px] shadow-3xl;
 }
 
 .nav-font {
