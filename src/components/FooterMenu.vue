@@ -8,10 +8,10 @@
 
 
     <nav class="flex z-0 flex-col self-stretch my-auto">
-      <ul class="flex flex-col w-full text-2xl text-teal-400 list-none p-0 mt-3">
-        <li class="text-right"><a href="#portfolio" class="no-underline text-lightGreen-400">Portafolio</a></li>
-        <li class="mt-2 text-right"><a href="#contact" class="no-underline text-lightGreen-400">Contáctanos</a></li>
-        <li class="mt-2"><a href="#about" class="no-underline text-lightGreen-400">Acerca de Nosotros</a></li>
+      <ul class="flex flex-col w-full text-2xl list-none p-0 mt-3">
+        <li class="text-right"><a href="../pages/Portfolio.vue" class="no-underline text-lightGreen-400">Portafolio</a></li>
+        <li class="mt-2 text-right"><a href="../pages/Contact.vue" class="no-underline text-lightGreen-400">Contáctanos</a></li>
+        <li class="mt-2"><a href="../pages/About.vue" class="no-underline text-lightGreen-400">Acerca de Nosotros</a></li>
       </ul>
 
       <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
