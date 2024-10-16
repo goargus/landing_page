@@ -10,7 +10,7 @@
                 <div class="grid grid-cols-1 gap-4">
                    
 
-                    <div class="flex p-4 justify-center items-center">
+                    <div class="flex p-20 justify-center items-center">
                         <offering-section title="lo que ofrecemos"></offering-section>
                     </div>
 
