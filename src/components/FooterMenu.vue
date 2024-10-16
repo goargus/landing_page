@@ -7,26 +7,32 @@
       alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[240px] w-[286px]" />
 
 
-    <nav class="flex z-0 flex-col self-stretch my-auto">
-      <ul class="flex flex-col w-full text-2xl text-teal-400 list-none p-0">
-        <li class="text-right"><a href="#portfolio" class="no-underline text-teal-400">Portafolio</a></li>
-        <li class="mt-2 text-right"><a href="#contact" class="no-underline text-teal-400">Contáctanos</a></li>
-        <li class="mt-2"><a href="#about" class="no-underline text-teal-400">Acerca de Nosotros</a></li>
-      </ul>
-
-      <div class="flex gap-4 items-center self-end mt-4">
+      <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
+  <ul class="flex flex-col w-full text-2xl list-none p-0">
+    <li class="text-right">
+      <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
+    </li>
+    <li class="mt-2 text-right">
+      <router-link to="/contact" class="no-underline text-lightGreen-400">Contáctanos</router-link>
+    </li>
+    <li class="mt-2">
+      <router-link to="/about" class="no-underline text-lightGreen-400">Acerca de Nosotros</router-link>
+    </li>
+  </ul>
+  <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
         <a href="#" aria-label="Social media link">
           <img loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a588b2e5269fdb564da070ad9a64ffc20cc0a146c3598ac689044549e68cef02?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589"
-            alt="" class="object-contain shrink-0 self-stretch my-auto w-8 aspect-square" />
+            src="../assets/facebook.svg"
+            alt="facebook" class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
         </a>
         <a href="#" aria-label="Social media link">
           <img loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e152466ef40bbee522973b9897bd04c44dc8f0d907ed00a19caf3d5ae71f5f86?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589"
-            alt="" class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
+            src="../assets/instagram.svg"
+            alt="instagram" class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
         </a>
       </div>
-    </nav>
+</nav>
+
 
   </footer>
 </template>
@@ -39,8 +45,8 @@ footer {
   align-items: center;
   padding: 0 3rem;
   min-height: 193px;
-  background: linear-gradient(100deg, #00bfa3 0%, #090901 50%);
-  color: #00FFAA;
+  background: linear-gradient(90deg, #072F2E 40%, #090901 100%);
+  @apply text-lightGreen;
 }
 
 .logo {
@@ -61,17 +67,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  @apply text-lightGreen;
-}
-
-.social-icons {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
+  @apply text-lightGreen
 }
 
 @media (max-width: 768px) {
@@ -89,6 +85,7 @@ nav ul li a {
     margin-top: 1rem;
   }
 }
+
 </style>
 
 <script>
