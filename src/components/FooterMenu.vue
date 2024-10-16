@@ -8,7 +8,7 @@
 
 
       <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
-  <ul class="flex flex-col w-full text-2xl text-teal-400 list-none p-0">
+  <ul class="flex flex-col w-full text-2xl list-none p-0">
     <li class="text-right">
       <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
     </li>
