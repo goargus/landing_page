@@ -46,8 +46,7 @@ footer {
   padding: 0 3rem;
   min-height: 193px;
   background: linear-gradient(90deg, #072F2E 40%, #090901 100%);
-  color: #03F4AF;
-  ;
+  @apply text-lightGreen;
 }
 
 .logo {
@@ -68,7 +67,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #03F4AF;
+  @apply text-lightGreen
 }
 
 @media (max-width: 768px) {
