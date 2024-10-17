@@ -1,11 +1,13 @@
 <template>
     <header class="relative">
-        <div class="relative w-full h-[calc(100vw/5.35)] bg-cover bg-center"
-            style="background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/7c80cfc594c39374eff253af5cb1e1f71e96350d03ede71a249052297024463e?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589');">
-
-            <div class="absolute inset-0 flex items-center justify-center">
-                <h1 class="text-white text-4xl font-bold">Argus</h1>
-            </div>
+        <img src="../assets/Bannerpicture.png" alt="Banner" class="object-cover w-full h-full" />
+        <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(7, 47, 46, 0.8) 40%, rgba(9, 9, 1, 0.8) 100%);">
         </div>
-    </header>
+
+<div class="absolute inset-0 flex items-center justify-center">
+    <img loading="lazy"
+      src="../assets/logo color principal 1.png"
+      alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[483px] w-[316px]" />
+</div>
+       </header>
 </template>
