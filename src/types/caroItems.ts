@@ -1,4 +1,4 @@
-interface proyects {
+interface projects {
     imagesrc: string;
     imageAlt: string;
     link: string;
@@ -6,8 +6,8 @@ interface proyects {
   
   export default {
     props: {
-      proyects: {
-        type: Array as () => proyects[],
+      projects: {
+        type: Array as () => projects[],
         required: true,
       },
     },

@@ -4,7 +4,7 @@
       {{ title }}
     </h2>
     
-    <Carousel :proyects="proyects" />
+    <Carousel :projects="projects" />
   </section>
 </template>
 
@@ -16,7 +16,7 @@ import mockup from '../assets/mockup.png';
 export default {
   name: 'Portfolio',
   components: {
- Carousel,
+    Carousel,
   },
   props: {
     title: {
@@ -26,13 +26,14 @@ export default {
   },
   data() {
     return {
-      proyects: [
+      projects: [
         {
           imagesrc: mockup ,
           imageAlt: 'Descripcion',
           link: '#',
         },
         {
+
         imagesrc: mockup,
           imageAlt: 'Descripcion',
           link: '#',
