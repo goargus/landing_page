@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import {projects} from '../types/caroItems'
+import {projects} from '../types/project'
 
 export default {
   name: 'Carousel',
