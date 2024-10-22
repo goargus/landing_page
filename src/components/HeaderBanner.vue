@@ -6,7 +6,7 @@
 
 <div class="absolute inset-0 flex items-center justify-center">
     <img loading="lazy"
-      src="../assets/logo color principal 1.png"
+      src="../assets/defaultLogo.png"
       alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[483px] w-[316px]" />
 </div>
        </header>
