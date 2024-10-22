@@ -11,10 +11,5 @@ interface proyects {
         required: true,
       },
     },
-    data() {
-      return {
-        currentIndex: 0,
-      };
-    },
   };
   
