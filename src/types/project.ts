@@ -1,4 +1,4 @@
-interface projects {
+interface project {
     imagesrc: string;
     imageAlt: string;
     link: string;
@@ -7,7 +7,7 @@ interface projects {
   export default {
     props: {
       projects: {
-        type: Array as () => projects[],
+        type: Array as () => project[],
         required: true,
       },
     },
