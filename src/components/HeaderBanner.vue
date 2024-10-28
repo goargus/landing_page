@@ -4,13 +4,22 @@
         <div class="degraded">
         </div>
 
-<div class="absolute inset-0 flex items-center justify-center">
-    <img loading="lazy"
-      src="../assets/defaultLogo.png"
-      alt="" class="bg-image" />
-</div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <h2 class="text-8xl text-lightGreen tracking-tighter leading-none lowercase max-md:max-w-full max-md:text-4xl">{{ title }}</h2>
+        </div>
        </header>
 </template>
+<script>
+export default {
+    name:'headerbanner',
+    props: {
+        title: {
+            type: String,
+            required: true,
+        }
+    },
+}
+</script>
 
 <style>
 .degraded{
