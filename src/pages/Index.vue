@@ -1,7 +1,7 @@
 <template>
 
     <div class="w-full">
-        <header-banner></header-banner>
+        <header-banner title="ARGUS"></header-banner>
     </div>
 
      <div class="flex ">
