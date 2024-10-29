@@ -16,10 +16,12 @@ export default {
       colors: {
         gray: '#717171',
         snowGray: "#F0F0F3",
-        lightGreen:"#03F4AF"
+        lightGreen:"#03F4AF",
+        txtcolor:"#525252"
       },
       boxShadow: {
         '3xl': '-10px -10px 30px 0px #FFF, 10px 10px 30px 0px rgba(174, 174, 192, 0.40);',
+        'neumorphic': '-10px -10px 15px 0px #FFF inset, 10px 10px 15px 0px rgba(174, 174, 192, 0.50) inset;',
       },
     },
   },
