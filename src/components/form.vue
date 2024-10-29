@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-center min-h-screen ">
       <form class="w-full max-w-[725px] space-y-12 p-24 ">
-        <h1>Escríbenos</h1>
+        <h1 class="h1contact">Escríbenos</h1>
         <div v-for="field in fields" :key="field.name" class="relative">
           <input
             :type="field.type"
@@ -16,7 +16,7 @@
       <div class="flex justify-center">
         <button
           type="submit"
-          class="hover:bg-gray-300">
+          class="hover:bg-gray-300 buttonsend">
           Enviar
         </button>
       </div>
@@ -40,7 +40,7 @@
   </script>
  
   <style>
-  h1{
+  .h1contact{
     @apply text-3xl font-semibold text-center text-txtcolor mb-16;
   }
   .txtbox{
@@ -49,7 +49,7 @@
   .txtboxmsg{
     @apply w-full h-[246px] px-4 py-[110px] text-gray rounded-3xl shadow-neumorphic border-0 focus:outline-none text-center bg-snowGray text-[22px];
   }
-  button{
+  .buttonsend{
     @apply w-3/5 py-3 mt-2 text-gray rounded-full shadow-3xl  focus:outline-none border-white border-2;
   }
 </style>
