@@ -44,6 +44,6 @@ export default {
 }
 
 .menu-item {
-  @apply self-stretch my-auto;
+  @apply self-stretch my-auto hover:bg-lightGreen;
 }
 </style>
