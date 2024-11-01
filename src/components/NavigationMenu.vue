@@ -40,7 +40,7 @@ export default {
 }
 
 .home-link {
-  @apply text-gray font-inter text-[30px] leading-normal;
+  @apply text-gray font-inter text-[30px] leading-normal hover:bg-lightGreen;
 }
 
 .menu-item {
