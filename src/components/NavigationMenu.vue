@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-container nav-font nav-shadow">
     <RouterLink v-for="(item, index) in navItems" :key="index" :to="item.href"
-      :class="index === 0 ? 'home-link' : 'menu-item'">
+      :class="index === 0 ? 'home-link menu-item' : 'menu-item'">
       {{ item.title }}
     </RouterLink>
 
@@ -40,10 +40,19 @@ export default {
 }
 
 .home-link {
-  @apply text-gray font-inter text-[30px] leading-normal hover:bg-lightGreen;
+  @apply text-gray font-inter text-[30px] leading-normal;
 }
 
 .menu-item {
-  @apply self-stretch my-auto hover:bg-lightGreen;
+  @apply self-stretch my-auto relative;
+}
+.menu-item::after {
+  content: '';
+  @apply absolute left-0 -bottom-1 h-[2px] bg-lightGreen scale-x-0 transition-transform duration-300 ease-in-out;
+  width: 100%; /* Ajusta el ancho de la línea según el texto */
+}
+
+.menu-item:hover::after {
+  @apply scale-x-100;
 }
 </style>
