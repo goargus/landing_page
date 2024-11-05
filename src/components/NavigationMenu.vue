@@ -49,7 +49,7 @@ export default {
 .menu-item::after {
   content: '';
   @apply absolute left-0 -bottom-1 h-[2px] bg-lightGreen scale-x-0 transition-transform duration-300 ease-in-out;
-  width: 100%; /* Ajusta el ancho de la línea según el texto */
+  width: 100%; 
 }
 
 .menu-item:hover::after {
