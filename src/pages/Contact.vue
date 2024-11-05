@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import HeaderBanner from '../components/HeaderBanner.vue';
-import ContactForm from '../components/form.vue';
+import ContactForm from '../components/ContactForm.vue';
 </script>
 
 <style>
