@@ -1,14 +1,13 @@
 <template>
-
     <div class="w-full">
         <header-banner title="ARGUS"></header-banner>
     </div>
 
-     <div class="flex ">
+    <div class="flex ">
         <div class="flex-grow p-5">
             <div class="p-5">
                 <div class="grid grid-cols-1 gap-4">
-                   
+
 
                     <div class="flex p-20 justify-center items-center">
                         <offering-section title="lo que ofrecemos"></offering-section>
@@ -20,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </template>
 
 <script setup lang="ts">
