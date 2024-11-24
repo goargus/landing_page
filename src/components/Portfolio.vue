@@ -3,14 +3,13 @@
     <h2 class="text-6xl tracking-tighter leading-none lowercase max-md:max-w-full max-md:text-4xl">
       {{ title }}
     </h2>
-    
+
     <Carousel :projects="projects" />
   </section>
 </template>
 
 <script lang="ts">
-import { DefineComponent } from 'vue';
-import Carousel from './carousel.vue';
+import Carousel from './Carousel.vue';
 import mockup from '../assets/mockup.png';
 
 export default {
@@ -28,18 +27,18 @@ export default {
     return {
       projects: [
         {
-          imagesrc: mockup ,
+          imagesrc: mockup,
           imageAlt: 'Descripcion',
           link: '#',
         },
         {
 
-        imagesrc: mockup,
+          imagesrc: mockup,
           imageAlt: 'Descripcion',
           link: '#',
         },
         {
-        imagesrc: mockup,
+          imagesrc: mockup,
           imageAlt: 'Descripcion',
           link: '#',
         },

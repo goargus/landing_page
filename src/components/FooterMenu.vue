@@ -7,31 +7,29 @@
       alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[240px] w-[286px]" />
 
 
-      <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
-  <ul class="flex flex-col w-full text-2xl list-none p-0">
-    <li class="text-right">
-      <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
-    </li>
-    <li class="mt-2 text-right">
-      <router-link to="/contact" class="no-underline text-lightGreen-400">Contáctanos</router-link>
-    </li>
-    <li class="mt-2">
-      <router-link to="/about" class="no-underline text-lightGreen-400">Acerca de Nosotros</router-link>
-    </li>
-  </ul>
-  <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
+    <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
+      <ul class="flex flex-col w-full text-2xl list-none p-0">
+        <li class="text-right">
+          <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
+        </li>
+        <li class="mt-2 text-right">
+          <router-link to="/contact" class="no-underline text-lightGreen-400">Contáctanos</router-link>
+        </li>
+        <li class="mt-2">
+          <router-link to="/about" class="no-underline text-lightGreen-400">Acerca de Nosotros</router-link>
+        </li>
+      </ul>
+      <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
         <a href="#" aria-label="Social media link">
-          <img loading="lazy"
-            src="../assets/facebook.svg"
-            alt="facebook" class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
+          <img loading="lazy" src="../assets/facebook.svg" alt="facebook"
+            class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
         </a>
         <a href="#" aria-label="Social media link">
-          <img loading="lazy"
-            src="../assets/instagram.svg"
-            alt="instagram" class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
+          <img loading="lazy" src="../assets/instagram.svg" alt="instagram"
+            class="object-contain shrink-0 self-stretch my-auto w-8 bg-blend-normal aspect-square" />
         </a>
       </div>
-</nav>
+    </nav>
 
 
   </footer>
@@ -85,7 +83,6 @@ nav ul li a {
     margin-top: 1rem;
   }
 }
-
 </style>
 
 <script>

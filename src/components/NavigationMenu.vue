@@ -8,26 +8,13 @@
   </nav>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { NavItem } from '../types/navItem'
 
-export default {
-  name: 'NavigationMenu',
-  props: {
-    navItems: {
-      type: Array as () => NavItem[],
-      required: true,
-      validator(items: NavItem[]) {
-        return items.every(item => {
-          return (
-            typeof item.title === 'string' &&
-            typeof item.href === 'string'
-          );
-        });
-      }
-    }
-  }
-};
+defineProps<{
+  navItems: NavItem[];
+}>();
+
 </script>
 
 <style scoped>
@@ -46,10 +33,11 @@ export default {
 .menu-item {
   @apply self-stretch my-auto relative;
 }
+
 .menu-item::after {
   content: '';
   @apply absolute left-0 -bottom-1 h-[2px] bg-lightGreen scale-x-0 transition-transform duration-300 ease-in-out;
-  width: 100%; 
+  width: 100%;
 }
 
 .menu-item:hover::after {
