@@ -12,13 +12,17 @@
     Nuestro enfoque está en entender las necesidades únicas de cada cliente y ofrecerles las herramientas para destacar en el mundo digital.
     </p>
 </div>
-<div class="flex p-20 justify-center items-center">
+<div class="flex p-20 mb-20 justify-center items-center">
                         <icon-section> </icon-section>
                     </div>
+<div>
+    <quotebanner></quotebanner>
+</div>
 </template>
 <script lang="ts" setup>
 import HeaderBanner from '../components/HeaderBanner.vue';
 import IconSection from '../components/IconSection.vue';
+import quotebanner from '../components/quotebanner.vue';
 </script>
 <style>
 .h1title{
