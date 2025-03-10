@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center text-center bg-gray-100 rounded-lg  p-5 w-[500px]">
+    <div class="flex flex-col items-center text-center bg-gray-100 rounded-lg  p-16 w-[500px]">
         <div class="flex justify-center items-center  rounded-full p-8 shadow-3xl border-white border-2">
             <img :src="imageSrc" :alt="imageAlt" class="h-50 w-50" />
         </div>
