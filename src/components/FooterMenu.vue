@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="flex relative gap-10 items-center px-10 mt-44 min-h-[193fpx] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    class="flex relative gap-10 items-center px-10 mt-0 min-h-[193fpx] max-md:px-5 max-md:mt-10 max-md:max-w-full">
 
     <img loading="lazy"
       src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f02c129669cdff87917f5edbaeb38e16b2485e76d36fe627761acee18113fcb?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589"
