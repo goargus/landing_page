@@ -1,8 +1,8 @@
 <template>
   <section class="relative flex flex-col md:flex-row items-center justify-center w-auto max-h-[225px] text-center  py-1 bg-white">
 
-    <div class="w-1/3 font-inter text-lightGreen max-w-[300px] text-3xl uppercase">
-      <h1>Y TÚ, ¿YA TIENES WEBSITE?</h1>
+    <div class="w-1/3 font-inter max-w-[300px] text-3xl uppercase">
+      <h1 class="text-lightGreen">Y TÚ, ¿YA TIENES WEBSITE?</h1>
     </div>
 
     <div class="relative flex flex-col items-center justify-center w-2/3">
