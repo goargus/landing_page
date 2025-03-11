@@ -91,3 +91,9 @@ button:focus-visible {
 h2{
   font-family: 'Ailerons', sans-serif;
 }
+h1{
+  @apply text-3xl font-semibold text-txtcolor ;
+}
+p{
+  @apply text-txtcolor text-[18px] font-normal leading-normal mx-auto;
+}
