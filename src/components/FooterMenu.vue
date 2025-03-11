@@ -10,13 +10,13 @@
     <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
       <ul class="flex flex-col w-full text-2xl list-none p-0">
         <li class="text-right">
-          <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
+          <router-link to="/portfolio" class="no-underline text-lightGreen">Portafolio</router-link>
         </li>
         <li class="mt-2 text-right">
-          <router-link to="/contact" class="no-underline text-lightGreen-400">Contáctanos</router-link>
+          <router-link to="/contact" class="no-underline text-lightGreen">Contáctanos</router-link>
         </li>
         <li class="mt-2">
-          <router-link to="/about" class="no-underline text-lightGreen-400">Acerca de Nosotros</router-link>
+          <router-link to="/about" class="no-underline text-lightGreen">Acerca de Nosotros</router-link>
         </li>
       </ul>
       <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
