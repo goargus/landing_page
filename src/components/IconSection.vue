@@ -16,7 +16,7 @@
 <script lang="ts">
 import IconCard from '../components/IconCard.vue';
 import WebDesign from '../assets/webdesign2.svg';
-import laptopicon from '../assets/LaptopIcon.svg';
+import LaptopIcon from '../assets/LaptopIcon.svg';
 
 export default {
     name: 'IconSection',
@@ -35,7 +35,7 @@ export default {
                     description: 'Contamos con un equipo de desarrolladores expertos dedicados a crear soluciones digitales de alta calidad. Nuestros especialistas en desarrollo están listos para transformar ideas en plataformas funcionales y personalizadas, adaptándose a las necesidades de cada proyecto. Desde el diseño hasta la implementación, trabajamos con las mejores prácticas para ofrecer resultados efectivos y escalables.',
                 },
                 {
-                    imageSrc: laptopicon,
+                    imageSrc: LaptopIcon,
                     imageAlt: 'Diseño',
                     title: 'Diseño',
                     description: 'Nuestro equipo de expertos en UX/UI se especializa en crear experiencias intuitivas y atractivas. Nos enfocamos en el diseño centrado en el usuario, asegurando que cada interfaz no solo sea visualmente impactante, sino también fácil de usar. Con un enfoque en funcionalidad y estética, optimizamos cada proyecto para ofrecer una experiencia memorable y efectiva para el usuario.',

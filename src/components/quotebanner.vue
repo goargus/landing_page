@@ -6,7 +6,7 @@
     </div>
 
     <div class="relative flex flex-col items-center justify-center w-2/3">
-      <img :src="websitedesign3" alt="Website Preview" class="max-w-full h-auto relative ">
+      <img :src="websiteDesign3" alt="Website Preview" class="max-w-full h-auto relative ">
       <h3 class="text-3xl font-bold text-txtcolor mb-[175px]">¡Quiero Mi Website!</h3>
     </div>
     
@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts">
-import websitedesign3 from '../assets/websitedesign3.png';
+import websiteDesign3 from '../assets/websitedesign3.png';
 
 export default {
   name: 'WebsiteQuote',
   data() {
     return {
-      websitedesign3,
+      websiteDesign3,
     };
   },
 };
