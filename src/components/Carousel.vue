@@ -13,7 +13,7 @@
       <img src="../assets/arrow.svg" alt="Arrow left" class="w-139 h-189" />
     </button>
     <button @click="nextSlide" class="transform arrow-right">
-      <img src="../assets/arrow-2.svg" alt="Arrow right" class="w-139 h-189" />
+      <img src="../assets/arrow2.svg" alt="Arrow right" class="w-139 h-189" />
     </button>
   </div>
 </template>
