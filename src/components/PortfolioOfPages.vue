@@ -13,7 +13,7 @@ import Carousel from './Carousel.vue';
 import mockup from '../assets/mockup.png';
 
 export default {
-  name: 'Portfolio',
+  name: 'PortfolioOfPages',
   components: {
     Carousel,
   },
