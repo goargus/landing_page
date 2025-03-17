@@ -1,22 +1,18 @@
 <template>
   <footer
-    class="flex relative gap-10 items-center px-10 mt-44 min-h-[193fpx] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+    class="flex relative gap-10 items-center px-10 mt-0 min-h-[193fpx] max-md:px-5 max-md:mt-10 max-md:max-w-full">
 
     <img loading="lazy"
-      src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f02c129669cdff87917f5edbaeb38e16b2485e76d36fe627761acee18113fcb?placeholderIfAbsent=true&apiKey=0ec1ed00d9eb4adfb001d83c3aaae589"
+      src="../assets/defaultLogo.png"
       alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[240px] w-[286px]" />
-
 
     <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
       <ul class="flex flex-col w-full text-2xl list-none p-0">
-        <li class="text-right">
-          <router-link to="/portfolio" class="no-underline text-lightGreen-400">Portafolio</router-link>
-        </li>
         <li class="mt-2 text-right">
-          <router-link to="/contact" class="no-underline text-lightGreen-400">Contáctanos</router-link>
+          <router-link to="/contact" class="no-underline text-lightGreen">Contáctanos</router-link>
         </li>
         <li class="mt-2">
-          <router-link to="/about" class="no-underline text-lightGreen-400">Acerca de Nosotros</router-link>
+          <router-link to="/about" class="no-underline text-lightGreen">Acerca de Nosotros</router-link>
         </li>
       </ul>
       <div class="flex gap-3.5 items-center self-end mt-3.5 mb-8">
@@ -30,7 +26,6 @@
         </a>
       </div>
     </nav>
-
 
   </footer>
 </template>
