@@ -7,8 +7,6 @@
         <div class="flex-grow p-5">
             <div class="p-5">
                 <div class="grid grid-cols-1 gap-4">
-
-
                     <div class="flex p-20 justify-center items-center">
                         <offering-section title="lo que ofrecemos"></offering-section>
                     </div>
@@ -30,7 +28,6 @@ import { NavItem } from '../types/navItem';
 
 const navItems = [
     { title: 'Inicio', href: '/' },
-    { title: 'Portafolio', href: '/portfolio' },
     { title: 'Acerca de Nosotros', href: '/about' },
     { title: 'Contáctanos', href: '/contact' },
 ] as NavItem[];

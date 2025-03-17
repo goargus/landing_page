@@ -17,7 +17,6 @@ import { NavItem } from './types/navItem'
 
 const navItems = [
   { title: 'Inicio', href: '/' },
-  { title: 'Portafolio', href: '/portfolio' },
   { title: 'Acerca de Nosotros', href: '/about' },
   { title: 'Contáctanos', href: '/contact' },
 ] as NavItem[];

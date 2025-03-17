@@ -6,12 +6,8 @@
       src="../assets/defaultLogo.png"
       alt="" class="object-contain z-0 shrink-0 self-stretch my-auto aspect-[1.53] min-w-[240px] w-[286px]" />
 
-
     <nav class="flex z-0 flex-col self-stretch my-auto mt-4">
       <ul class="flex flex-col w-full text-2xl list-none p-0">
-        <li class="text-right">
-          <router-link to="/portfolio" class="no-underline text-lightGreen">Portafolio</router-link>
-        </li>
         <li class="mt-2 text-right">
           <router-link to="/contact" class="no-underline text-lightGreen">Contáctanos</router-link>
         </li>
@@ -30,7 +26,6 @@
         </a>
       </div>
     </nav>
-
 
   </footer>
 </template>
