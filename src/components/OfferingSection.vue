@@ -11,9 +11,9 @@
 </template>
 <script lang="ts">
 import OfferingCard from '../components/OfferingCard.vue'
-import WebDesignImage from '../assets/websiteIcon.svg';
-import phoneimage from '../assets/phoneIcon.svg';
-import checkicon from '../assets/checkIcon.svg';
+import webDesignImage from '../assets/websiteIcon.svg';
+import phoneImage from '../assets/phoneIcon.svg';
+import checkIcon from '../assets/checkIcon.svg';
 
 export default {
     name: 'OfferingSection',
@@ -30,19 +30,19 @@ export default {
         return {
             offerings: [
                 {
-                    imageSrc: WebDesignImage,
+                    imageSrc: webDesignImage,
                     imageAlt: 'Diseño de Páginas Web',
                     title: 'Diseño de Páginas Web',
                     description: 'Creamos páginas web optimizadas para convertir visitantes en clientes potenciales, utilizando un diseño atractivo y una clara llamada a la acción.',
                 },
                 {
-                    imageSrc: phoneimage,
+                    imageSrc: phoneImage,
                     imageAlt: 'Diseño Responsivo',
                     title: 'Diseño Responsivo',
                     description: 'Nuestros diseños son responsivos, asegurando que cada página web se vea genial y funcione perfectamente en todos los dispositivos, desde ordenadores hasta móviles.',
                 },
                 {
-                    imageSrc: checkicon,
+                    imageSrc: checkIcon,
                     imageAlt: 'Soporte y Mantenimiento',
                     title: 'Soporte y Mantenimiento',
                     description: 'Ofrecemos soporte y mantenimiento continuo para que nuestros clientes no tengan que preocuparse por la parte técnica de sus sitios web.',

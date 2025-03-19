@@ -83,11 +83,17 @@ button:focus-visible {
 } */
 @font-face {
   font-family: 'Ailerons';
-  src: url('../src/assets/Ailerons-Typeface.otf') format('opentype');
+  src: url('../src/assets/aileronsTypeFace.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 h2{
   font-family: 'Ailerons', sans-serif;
+}
+h1{
+  @apply text-3xl font-semibold text-txtcolor ;
+}
+p{
+  @apply text-txtcolor text-[18px] font-normal leading-normal mx-auto;
 }
