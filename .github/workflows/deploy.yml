@@ -29,9 +29,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "23"
+          
+      - name: Restore cached dependencies
+        uses: actions/cache@v3
+        with:
+        path: ~/.npm
+        key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build the project
         run: npm run build
