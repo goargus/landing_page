@@ -24,11 +24,4 @@
 import HeaderBanner from '../components/HeaderBanner.vue';
 import OfferingSection from '../components/OfferingSection.vue';
 import PortfolioOfPages from '../components/PortfolioOfPages.vue';
-import { NavItem } from '../types/navItem';
-
-const navItems = [
-    { title: 'Inicio', href: '/' },
-    { title: 'Acerca de Nosotros', href: '/about' },
-    { title: 'Contáctanos', href: '/contact' },
-] as NavItem[];
 </script>
