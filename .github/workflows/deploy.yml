@@ -49,8 +49,10 @@ jobs:
         with:
           path: ./dist
           name: dist
+          retention-days: 1
 
   deploy:
+    needs: build
     if: github.event_name != 'pull_request'
     environment:
       name: github-pages
@@ -60,6 +62,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          artifact_name: dist
 
       - name: Verify deployment URL
         run: |
