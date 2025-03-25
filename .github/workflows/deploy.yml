@@ -59,3 +59,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+      - name: Verify deployment URL
+        run: |
+          echo "Checking if ${{ steps.deployment.outputs.page_url }} is accessible..."
+          curl -I ${{ steps.deployment.outputs.page_url }} || exit 1
