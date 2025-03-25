@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import websiteDesign3 from '../assets/websitedesign3.png';
+import websiteDesign3 from '../assets/websiteDesign3.png';
 
 export default {
   name: 'WebsiteQuote',
