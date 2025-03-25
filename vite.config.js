@@ -1,5 +1,5 @@
 export default defineConfig({
-  base: "./",
+  base: "/landing_page/",
   plugins: [
     vue(),
     Pages(),
