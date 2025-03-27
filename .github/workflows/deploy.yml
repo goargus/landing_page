@@ -8,7 +8,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-    
+
 permissions:
   contents: read
   pages: write
@@ -19,15 +19,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    if: github.event_name != 'pull_request'
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,7 +29,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-          
+
       - name: Restore cached dependencies
         uses: actions/cache@v3
         with:
@@ -51,14 +44,22 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: List built files (debugging)
+        run: ls -la ./dist
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-          name: github-pages
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          artifact_name: github-pages
