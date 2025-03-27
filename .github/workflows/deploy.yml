@@ -44,8 +44,11 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: List built files (debugging)
-        run: ls -la ./dist
+      - name: Upload the artifact 
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./dist
 
   deploy:
     needs: build
@@ -54,6 +57,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: download the artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: ./dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
