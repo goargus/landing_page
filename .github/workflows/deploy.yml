@@ -25,8 +25,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
@@ -47,10 +50,16 @@ jobs:
       - name: List build output
         run: ls -al ./dist
 
+      - name: Debug - List build output
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "Dist directory contents:"
+          ls -la ./dist || echo "Dist directory not found"
+
       - name: Upload artifact for deployment
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
           path: ./dist
           name: github-pages
       
@@ -62,15 +71,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
-          
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
-        with:
-          artifact_name: github-pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
