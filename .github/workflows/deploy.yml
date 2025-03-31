@@ -43,12 +43,16 @@ jobs:
 
       - name: Build the project
         run: npm run build
+        
+      - name: List build output
+        run: ls -al ./dist
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: ./dist
+          name: github-pages
       
   deploy:
     needs: build
@@ -66,4 +70,7 @@ jobs:
           
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: github-pages
         uses: actions/deploy-pages@v2
