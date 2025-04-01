@@ -4,7 +4,7 @@ import Pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "//landing_page//",  
+  base: "/",  
   plugins: [
     vue(),
     Pages(),
