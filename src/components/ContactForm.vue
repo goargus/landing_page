@@ -6,6 +6,7 @@
       <div v-for="field in fields" :key="field.name" class="relative">
         <input
           v-model="form[field.name]"
+          :name="field.name"
           :type="field.type"
           :placeholder="field.placeholder"
           class="txtbox"
@@ -15,6 +16,7 @@
       <div class="relative">
         <textarea
           v-model="form.message"
+          :name="form.message"
           placeholder="Mensaje"
           class="txtboxmsg"
           required></textarea>
@@ -60,8 +62,8 @@ export default {
           "service_sc82me7",  
           "template_n63c5se", 
           {
-            from_name: `${this.form.name} ${this.form.lastName}`,
-            from_email: this.form.email,
+            name: `${this.form.name} ${this.form.lastName}`, 
+            email: this.form.email,
             phone: this.form.phone,
             message: this.form.message
           },
