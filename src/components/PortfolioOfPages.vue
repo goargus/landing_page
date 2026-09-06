@@ -12,7 +12,7 @@
 import { computed } from 'vue'
 import Carousel from './Carousel.vue'
 import { getFeaturedProjects, toLegacyProject } from '../data/projects'
-import mockup from '../assets/mockup.png'
+import mockup from '../assets/mockup.webp'
 
 defineProps<{
   title: string

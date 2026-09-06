@@ -11,6 +11,10 @@
         :src="websiteDesign3"
         alt="Website Preview"
         class="quote-image"
+        width="309"
+        height="212"
+        loading="lazy"
+        decoding="async"
       />
       <h3 class="quote-subtitle">¡Quiero Mi Website!</h3>
     </div>
@@ -24,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import websiteDesign3 from '../assets/websiteDesign3.png'
+import websiteDesign3 from '../assets/websiteDesign3.webp'
 </script>
 
 <style scoped>
