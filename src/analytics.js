@@ -1,5 +1,9 @@
+const BEACON_SELECTOR = 'script[src*="cloudflareinsights.com"]'
+
 export function isAnalyticsEnabled () {
-  return Boolean(import.meta.env.VITE_CF_BEACON_TOKEN)
+  if (typeof document === 'undefined') return false
+
+  return document.querySelector(BEACON_SELECTOR) !== null
 }
 
 export function trackFormSubmission (path = '/contact/submitted') {
