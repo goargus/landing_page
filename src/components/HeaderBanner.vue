@@ -2,7 +2,7 @@
   <header class="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden">
     <img
       src="../assets/Bannerpicture.png"
-      alt="Banner"
+      alt=""
       class="object-cover w-full h-full absolute inset-0"
     />
     <div class="degraded"></div>
