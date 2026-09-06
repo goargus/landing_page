@@ -41,7 +41,7 @@ describe('image alt text', () => {
       props: { title: 'Test' },
       global: { stubs: { 'router-link': true } }
     })
-    const banner = wrapper.find('header > img')
+    const banner = wrapper.find('header picture > img')
 
     expect(banner.exists()).toBe(true)
     expect(banner.attributes('alt')).toBe('')

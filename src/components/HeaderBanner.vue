@@ -1,10 +1,26 @@
 <template>
   <header class="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden">
-    <img
-      src="../assets/Bannerpicture.png"
-      alt=""
-      class="object-cover w-full h-full absolute inset-0"
-    />
+    <picture class="contents">
+      <source
+        type="image/avif"
+        srcset="/hero/hero-720.avif 720w, /hero/hero-1440.avif 1440w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/hero/hero-720.webp 720w, /hero/hero-1440.webp 1440w"
+        sizes="100vw"
+      />
+      <img
+        src="/hero/hero-1440.webp"
+        alt=""
+        width="1440"
+        height="269"
+        fetchpriority="high"
+        decoding="async"
+        class="object-cover w-full h-full absolute inset-0"
+      />
+    </picture>
     <div class="degraded"></div>
 
     <div class="absolute inset-0 flex flex-col items-center justify-center px-4">
@@ -81,6 +97,8 @@ onMounted(() => {
 .hero-title {
   @apply text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-lightGreen tracking-tighter leading-none lowercase;
   @apply max-w-full text-center;
+  font-family: 'Ailerons', sans-serif;
+  font-weight: 400;
 }
 
 .hero-subtitle {

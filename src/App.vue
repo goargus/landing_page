@@ -4,7 +4,9 @@
   </div>
 
   <div class="w-full bg-snowGray">
-    <router-view></router-view>
+    <main class="min-h-screen">
+      <router-view></router-view>
+    </main>
     <footer-menu></footer-menu>
   </div>
 </template>

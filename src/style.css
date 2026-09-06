@@ -3,9 +3,10 @@
 
 @font-face {
   font-family: 'Ailerons';
-  src: url('../src/assets/aileronsTypeFace.otf') format('opentype');
+  src: url('/fonts/aileronsTypeFace.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 h2{

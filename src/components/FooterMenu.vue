@@ -2,8 +2,11 @@
   <footer class="footer-container">
     <img
       loading="lazy"
+      decoding="async"
       src="../assets/defaultLogo.png"
       alt="Go Argus Logo"
+      width="286"
+      height="187"
       class="footer-logo"
     />
 

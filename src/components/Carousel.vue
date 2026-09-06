@@ -30,6 +30,8 @@
           :src="project.imagesrc"
           :alt="project.imageAlt"
           class="image-size"
+          loading="lazy"
+          decoding="async"
         />
         <a
           :href="project.link"
