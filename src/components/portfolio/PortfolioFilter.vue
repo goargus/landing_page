@@ -47,7 +47,7 @@ defineEmits<{
   @apply px-5 py-2 rounded-full text-sm font-medium;
   @apply transition-all duration-300;
   @apply border-2 border-transparent;
-  @apply bg-snowGray text-gray;
+  @apply bg-snowGray text-argus-gray;
   @apply hover:bg-lightGreen/10 hover:text-lightGreen;
   @apply focus:outline-none focus:ring-2 focus:ring-lightGreen focus:ring-offset-2;
 }

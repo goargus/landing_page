@@ -12,7 +12,7 @@ export default {
         inter: ['Inter', 'sans-serif']
       },
       colors: {
-        gray: '#717171',
+        'argus-gray': '#717171',
         snowGray: "#F0F0F3",
         lightGreen:"#03F4AF",
         txtcolor:"#525252"

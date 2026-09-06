@@ -47,6 +47,6 @@ defineProps<{
 }
 
 .testimonial-role {
-  @apply text-gray text-sm;
+  @apply text-argus-gray text-sm;
 }
 </style>
