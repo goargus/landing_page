@@ -28,6 +28,16 @@
         ></textarea>
       </div>
 
+      <div class="hp-field" aria-hidden="true">
+        <input
+          v-model="honeypot"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
       <div class="flex justify-center">
         <button
           type="submit"
@@ -45,29 +55,32 @@
         </button>
       </div>
 
-      <Transition name="message">
-        <p
-          v-if="message"
-          class="message-feedback"
-          :class="{ 'message-success': isSuccess, 'message-error': !isSuccess }"
-        >
-          {{ message }}
-        </p>
-      </Transition>
+      <div aria-live="polite" role="status">
+        <Transition name="message">
+          <p
+            v-if="message"
+            class="message-feedback"
+            :class="{ 'message-success': isSuccess, 'message-error': !isSuccess }"
+          >
+            {{ message }}
+          </p>
+        </Transition>
+      </div>
     </form>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onBeforeUnmount, reactive, ref } from "vue";
 
-const form = ref({
-  name: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  message: ""
-});
+const THROTTLE_WINDOW_MS = 30000;
+const THROTTLE_STORAGE_KEY = "argus:contact:last-submit";
+const MESSAGE_DURATION_MS = 5000;
+
+const SUCCESS_MESSAGE = "¡Mensaje enviado con éxito!";
+const GENERIC_ERROR_MESSAGE = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+const SEND_FAILED_MESSAGE = "No pudimos enviar tu mensaje por un problema con nuestro proveedor de correo. Por favor, inténtalo de nuevo en unos minutos o escríbenos directamente.";
+const THROTTLE_MESSAGE = "Ya enviaste un mensaje hace un momento. Espera unos segundos antes de intentarlo de nuevo.";
 
 const fields = [
   { name: "name", type: "text", placeholder: "Nombre", pattern: "^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$", title: "El nombre solo puede contener letras y espacios" },
@@ -76,46 +89,106 @@ const fields = [
   { name: "phone", type: "tel", placeholder: "Teléfono", pattern: "^[\\d\\s+()\\-]+$", title: "El teléfono solo puede contener números, espacios, +, paréntesis y guiones" },
 ];
 
+const form = reactive({
+  name: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+});
+
+const honeypot = ref("");
 const message = ref("");
 const isSuccess = ref(false);
 const isSubmitting = ref(false);
 
+let clearMessageTimer = null;
+
+function showMessage(text, success) {
+  if (clearMessageTimer) {
+    clearTimeout(clearMessageTimer);
+  }
+
+  message.value = text;
+  isSuccess.value = success;
+  clearMessageTimer = setTimeout(() => {
+    message.value = "";
+  }, MESSAGE_DURATION_MS);
+}
+
+let inMemoryLastSubmitAt = 0;
+
+function getLastSubmitAt() {
+  try {
+    return Number(window.localStorage.getItem(THROTTLE_STORAGE_KEY)) || 0;
+  } catch {
+    return inMemoryLastSubmitAt;
+  }
+}
+
+function setLastSubmitAt(timestamp) {
+  inMemoryLastSubmitAt = timestamp;
+
+  try {
+    window.localStorage.setItem(THROTTLE_STORAGE_KEY, String(timestamp));
+  } catch {}
+}
+
 async function sendEmail() {
+  if (honeypot.value) {
+    return;
+  }
+
+  const now = Date.now();
+  const lastSubmitAt = getLastSubmitAt();
+
+  if (lastSubmitAt && now - lastSubmitAt < THROTTLE_WINDOW_MS) {
+    showMessage(THROTTLE_MESSAGE, false);
+    return;
+  }
+
   isSubmitting.value = true;
   message.value = "";
+  setLastSubmitAt(now);
 
   try {
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        name: form.value.name,
-        lastName: form.value.lastName,
-        email: form.value.email,
-        phone: form.value.phone,
-        message: form.value.message
-      })
+        name: form.name,
+        lastName: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+      }),
     });
 
     if (!response.ok) {
+      const body = await response.json().catch(() => null);
+
+      if (body && body.error === "send_failed") {
+        throw new Error("send_failed");
+      }
+
       throw new Error(`El servidor respondió ${response.status}`);
     }
 
-    message.value = "¡Mensaje enviado con éxito!";
-    isSuccess.value = true;
-    form.value = { name: "", lastName: "", email: "", phone: "", message: "" };
+    showMessage(SUCCESS_MESSAGE, true);
+    Object.assign(form, { name: "", lastName: "", email: "", phone: "", message: "" });
   } catch (error) {
-    message.value = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
-    isSuccess.value = false;
+    showMessage(error.message === "send_failed" ? SEND_FAILED_MESSAGE : GENERIC_ERROR_MESSAGE, false);
     console.error("Contact form error:", error);
   } finally {
     isSubmitting.value = false;
-
-    setTimeout(() => {
-      message.value = "";
-    }, 5000);
   }
 }
+
+onBeforeUnmount(() => {
+  if (clearMessageTimer) {
+    clearTimeout(clearMessageTimer);
+  }
+});
 </script>
 
 <style scoped>
@@ -146,6 +219,14 @@ async function sendEmail() {
 
 .txtboxmsg:focus {
   box-shadow: -10px -10px 15px 0px #FFF inset, 10px 10px 15px 0px rgba(174, 174, 192, 0.50) inset, 0 0 0 3px rgba(3, 244, 175, 0.2);
+}
+
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .buttonsend {
