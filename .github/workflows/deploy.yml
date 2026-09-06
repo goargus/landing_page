@@ -38,6 +38,8 @@ jobs:
         run: npm run test:ci
 
       - name: Build
+        env:
+          VITE_CF_BEACON_TOKEN: ${{ github.event_name == 'push' && secrets.VITE_CF_BEACON_TOKEN || '' }}
         run: npm run build
 
       - name: Check for Cloudflare credentials

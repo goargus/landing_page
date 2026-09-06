@@ -72,6 +72,7 @@
 
 <script setup>
 import { onBeforeUnmount, reactive, ref } from "vue";
+import { trackFormSubmission } from "../analytics.js";
 
 const THROTTLE_WINDOW_MS = 30000;
 const THROTTLE_STORAGE_KEY = "argus:contact:last-submit";
@@ -176,6 +177,7 @@ async function sendEmail() {
 
     showMessage(SUCCESS_MESSAGE, true);
     Object.assign(form, { name: "", lastName: "", email: "", phone: "", message: "" });
+    trackFormSubmission();
   } catch (error) {
     showMessage(error.message === "send_failed" ? SEND_FAILED_MESSAGE : GENERIC_ERROR_MESSAGE, false);
     console.error("Contact form error:", error);
