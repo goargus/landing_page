@@ -4,6 +4,8 @@ import ContactForm from '../../components/ContactForm.vue'
 
 const SUCCESS_MESSAGE = '¡Mensaje enviado con éxito!'
 const ERROR_MESSAGE = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.'
+const SEND_FAILED_MESSAGE = 'No pudimos enviar tu mensaje por un problema con nuestro proveedor de correo. Por favor, inténtalo de nuevo en unos minutos o escríbenos directamente.'
+const THROTTLE_MESSAGE_SNIPPET = 'Espera unos segundos'
 
 const filledForm = {
   name: 'John',
@@ -17,9 +19,17 @@ function jsonResponse(body, status = 200) {
   return { ok: status >= 200 && status < 300, status, json: async () => body }
 }
 
+async function fillForm(wrapper) {
+  await wrapper.find('input[name="name"]').setValue(filledForm.name)
+  await wrapper.find('input[name="lastName"]').setValue(filledForm.lastName)
+  await wrapper.find('input[name="email"]').setValue(filledForm.email)
+  await wrapper.find('input[name="phone"]').setValue(filledForm.phone)
+  await wrapper.find('textarea').setValue(filledForm.message)
+}
+
 async function submitFilledForm() {
   const wrapper = mount(ContactForm)
-  await wrapper.setData({ form: { ...filledForm } })
+  await fillForm(wrapper)
   await wrapper.find('form').trigger('submit.prevent')
   await flushPromises()
   return wrapper
@@ -43,14 +53,14 @@ describe('ContactForm', () => {
   it('Has required form fields', () => {
     const wrapper = mount(ContactForm)
     expect(wrapper.find('form').exists()).toBe(true)
-    expect(wrapper.findAll('input').length).toBe(4)
+    expect(wrapper.findAll('input[required]').length).toBe(4)
     expect(wrapper.find('textarea').exists()).toBe(true)
     expect(wrapper.find('button[type="submit"]').exists()).toBe(true)
   })
 
   it('Renders all input fields with correct attributes', () => {
     const wrapper = mount(ContactForm)
-    const inputs = wrapper.findAll('input')
+    const inputs = wrapper.findAll('input[required]')
 
     const expectedFields = [
       { type: 'text', placeholder: 'Nombre', pattern: '^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$', title: 'El nombre solo puede contener letras y espacios' },
@@ -120,10 +130,9 @@ describe('ContactForm', () => {
     expect(feedback.exists()).toBe(true)
     expect(feedback.text()).toBe(SUCCESS_MESSAGE)
     expect(feedback.classes()).toContain('message-success')
-    expect(wrapper.vm.isSuccess).toBe(true)
-    expect(wrapper.vm.isSubmitting).toBe(false)
-    expect(wrapper.vm.form.name).toBe('')
-    expect(wrapper.vm.form.message).toBe('')
+    expect(wrapper.find('button[type="submit"]').text()).toBe('Enviar')
+    expect(wrapper.find('input[name="name"]').element.value).toBe('')
+    expect(wrapper.find('textarea').element.value).toBe('')
   })
 
   it('Shows the error feedback when the endpoint returns a failure status', async () => {
@@ -136,9 +145,23 @@ describe('ContactForm', () => {
     expect(feedback.exists()).toBe(true)
     expect(feedback.text()).toBe(ERROR_MESSAGE)
     expect(feedback.classes()).toContain('message-error')
-    expect(wrapper.vm.isSuccess).toBe(false)
-    expect(wrapper.vm.isSubmitting).toBe(false)
-    expect(wrapper.vm.form.message).toBe(filledForm.message)
+    expect(wrapper.find('textarea').element.value).toBe(filledForm.message)
+    expect(consoleError).toHaveBeenCalledTimes(1)
+
+    consoleError.mockRestore()
+  })
+
+  it('Shows a distinct message when the email provider fails to send (quota or outage)', async () => {
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    fetch.mockResolvedValue(jsonResponse({ error: 'send_failed' }, 502))
+
+    const wrapper = await submitFilledForm()
+    const feedback = wrapper.find('.message-feedback')
+
+    expect(feedback.exists()).toBe(true)
+    expect(feedback.text()).toBe(SEND_FAILED_MESSAGE)
+    expect(feedback.classes()).toContain('message-error')
+    expect(feedback.text()).not.toBe(ERROR_MESSAGE)
     expect(consoleError).toHaveBeenCalledTimes(1)
 
     consoleError.mockRestore()
@@ -153,10 +176,90 @@ describe('ContactForm', () => {
 
     expect(feedback.text()).toBe(ERROR_MESSAGE)
     expect(feedback.classes()).toContain('message-error')
-    expect(wrapper.vm.isSuccess).toBe(false)
-    expect(wrapper.vm.form.message).toBe(filledForm.message)
+    expect(wrapper.find('textarea').element.value).toBe(filledForm.message)
     expect(consoleError).toHaveBeenCalledTimes(1)
 
     consoleError.mockRestore()
+  })
+
+  it('Announces feedback messages through a live region', async () => {
+    fetch.mockResolvedValue(jsonResponse({ ok: true }))
+
+    const wrapper = await submitFilledForm()
+    const liveRegion = wrapper.find('[aria-live="polite"]')
+
+    expect(liveRegion.exists()).toBe(true)
+    expect(liveRegion.attributes('role')).toBe('status')
+    expect(liveRegion.text()).toBe(SUCCESS_MESSAGE)
+  })
+
+  it('Hides the honeypot field from sighted users and assistive tech', () => {
+    const wrapper = mount(ContactForm)
+    const honeypot = wrapper.find('input[name="website"]')
+
+    expect(honeypot.exists()).toBe(true)
+    expect(honeypot.attributes('tabindex')).toBe('-1')
+    expect(honeypot.attributes('autocomplete')).toBe('off')
+    expect(honeypot.attributes('required')).toBeUndefined()
+
+    const hiddenContainer = honeypot.element.closest('[aria-hidden="true"]')
+    expect(hiddenContainer).not.toBeNull()
+    expect(hiddenContainer.classList.contains('hp-field')).toBe(true)
+  })
+
+  it('Silently discards the submission when the honeypot field is filled', async () => {
+    fetch.mockResolvedValue(jsonResponse({ ok: true }))
+
+    const wrapper = mount(ContactForm)
+    await fillForm(wrapper)
+    await wrapper.find('input[name="website"]').setValue('http://spam.example')
+    await wrapper.find('form').trigger('submit.prevent')
+    await flushPromises()
+
+    expect(fetch).not.toHaveBeenCalled()
+    expect(wrapper.find('.message-feedback').exists()).toBe(false)
+  })
+
+  it('Rejects a second submission within the throttle window', async () => {
+    fetch.mockResolvedValue(jsonResponse({ ok: true }))
+
+    const wrapper = mount(ContactForm)
+    await fillForm(wrapper)
+    await wrapper.find('form').trigger('submit.prevent')
+    await flushPromises()
+
+    expect(fetch).toHaveBeenCalledTimes(1)
+
+    await fillForm(wrapper)
+    await wrapper.find('form').trigger('submit.prevent')
+    await flushPromises()
+
+    expect(fetch).toHaveBeenCalledTimes(1)
+
+    const feedback = wrapper.find('.message-feedback')
+    expect(feedback.exists()).toBe(true)
+    expect(feedback.text()).toContain(THROTTLE_MESSAGE_SNIPPET)
+    expect(feedback.classes()).toContain('message-error')
+  })
+
+  it('Allows a normal visitor to submit again once the throttle window has passed', async () => {
+    fetch.mockResolvedValue(jsonResponse({ ok: true }))
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date('2026-01-01T00:00:00Z'))
+
+    const wrapper = mount(ContactForm)
+    await fillForm(wrapper)
+    await wrapper.find('form').trigger('submit.prevent')
+    await flushPromises()
+
+    vi.setSystemTime(new Date('2026-01-01T00:00:31Z'))
+
+    await fillForm(wrapper)
+    await wrapper.find('form').trigger('submit.prevent')
+    await flushPromises()
+
+    vi.useRealTimers()
+
+    expect(fetch).toHaveBeenCalledTimes(2)
   })
 })
