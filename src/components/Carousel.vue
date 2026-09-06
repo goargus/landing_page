@@ -1,6 +1,12 @@
 <template>
   <div
-    class="relative mt-4 overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] lg:h-[680px]"
+    class="carousel-root relative mt-4 overflow-hidden h-[400px] sm:h-[500px] md:h-[600px] lg:h-[680px]"
+    role="region"
+    aria-roledescription="carrusel"
+    aria-label="Proyectos"
+    tabindex="0"
+    @keydown.arrow-left.prevent="prevSlide"
+    @keydown.arrow-right.prevent="nextSlide"
     @touchstart="handleTouchStart"
     @touchmove="handleTouchMove"
     @touchend="handleTouchEnd"
@@ -13,6 +19,11 @@
         v-for="(project, index) in projects"
         :key="index"
         class="flex-none w-full flex flex-col justify-center items-center relative px-4"
+        role="group"
+        aria-roledescription="diapositiva"
+        :aria-label="`${index + 1} de ${projects.length}`"
+        :aria-hidden="index !== currentIndex"
+        :inert="index !== currentIndex"
       >
         <div class="bg-square"></div>
         <img
@@ -24,6 +35,7 @@
           :href="project.link"
           class="button-website"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Ver Website
         </a>
@@ -36,14 +48,14 @@
       class="arrow-button arrow-left"
       aria-label="Previous slide"
     >
-      <img src="../assets/arrow.svg" alt="Arrow left" class="w-6 h-6 md:w-8 md:h-8" />
+      <img src="../assets/arrow.svg" alt="" class="w-6 h-6 md:w-8 md:h-8" />
     </button>
     <button
       @click="nextSlide"
       class="arrow-button arrow-right"
       aria-label="Next slide"
     >
-      <img src="../assets/arrow2.svg" alt="Arrow right" class="w-6 h-6 md:w-8 md:h-8" />
+      <img src="../assets/arrow2.svg" alt="" class="w-6 h-6 md:w-8 md:h-8" />
     </button>
 
     <!-- Dot Indicators -->
@@ -57,11 +69,13 @@
         :aria-label="`Go to slide ${index + 1}`"
       ></button>
     </div>
+
+    <p class="sr-only" aria-live="polite">{{ liveMessage }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { LegacyProject } from '../types/project'
 
 const props = defineProps<{
@@ -80,6 +94,12 @@ const nextSlide = () => {
 const prevSlide = () => {
   currentIndex.value = (currentIndex.value - 1 + props.projects.length) % props.projects.length
 }
+
+const liveMessage = computed(() => {
+  if (!props.projects.length) return ''
+  const project = props.projects[currentIndex.value]
+  return `Diapositiva ${currentIndex.value + 1} de ${props.projects.length}: ${project?.imageAlt ?? ''}`
+})
 
 const goToSlide = (index: number) => {
   currentIndex.value = index
@@ -163,5 +183,12 @@ const handleTouchEnd = () => {
 
 .dot-active {
   @apply bg-lightGreen w-4 md:w-6;
+}
+
+.carousel-root:focus-visible,
+.arrow-button:focus-visible,
+.dot-indicator:focus-visible,
+.button-website:focus-visible {
+  @apply outline-none ring-2 ring-lightGreen ring-offset-2;
 }
 </style>

@@ -9,7 +9,7 @@
         aria-modal="true"
         :aria-labelledby="'modal-title-' + project.id"
       >
-        <div class="modal-container" ref="modalContainer">
+        <div class="modal-container" ref="modalContainer" tabindex="-1">
           <!-- Close Button -->
           <button
             class="modal-close"
@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted, onUnmounted } from 'vue'
+import { computed, watch, ref, nextTick, onMounted, onUnmounted } from 'vue'
 import type { Project } from '../../types/project'
 import { getCategoryLabel } from '../../data/projects'
 import ProjectGallery from './ProjectGallery.vue'
@@ -121,6 +121,21 @@ const emit = defineEmits<{
 }>()
 
 const modalContainer = ref<HTMLElement | null>(null)
+const previouslyFocused = ref<HTMLElement | null>(null)
+
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ')
+
+const getFocusable = (): HTMLElement[] =>
+  modalContainer.value
+    ? Array.from(modalContainer.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+    : []
 
 const categoryLabel = computed(() =>
   props.project ? getCategoryLabel(props.project.category) : ''
@@ -128,17 +143,58 @@ const categoryLabel = computed(() =>
 
 // Handle Escape key
 const handleKeydown = (e: KeyboardEvent) => {
-  if (e.key === 'Escape' && props.project) {
+  if (!props.project) return
+
+  if (e.key === 'Escape') {
     emit('close')
+    return
+  }
+
+  if (e.key !== 'Tab') return
+
+  const focusable = getFocusable()
+
+  if (!focusable.length) {
+    e.preventDefault()
+    modalContainer.value?.focus()
+    return
+  }
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+  const active = document.activeElement as HTMLElement | null
+  const inside = active ? modalContainer.value?.contains(active) : false
+
+  if (!inside) {
+    e.preventDefault()
+    ;(e.shiftKey ? last : first).focus()
+    return
+  }
+
+  if (e.shiftKey && active === first) {
+    e.preventDefault()
+    last.focus()
+  } else if (!e.shiftKey && active === last) {
+    e.preventDefault()
+    first.focus()
   }
 }
 
 // Lock body scroll when modal is open
-watch(() => props.project, (newVal) => {
+watch(() => props.project, async (newVal, oldVal) => {
   if (newVal) {
+    if (!oldVal) {
+      previouslyFocused.value = document.activeElement as HTMLElement | null
+    }
     document.body.style.overflow = 'hidden'
+    await nextTick()
+    const focusable = getFocusable()
+    ;(focusable[0] ?? modalContainer.value)?.focus()
   } else {
     document.body.style.overflow = ''
+    const trigger = previouslyFocused.value
+    previouslyFocused.value = null
+    trigger?.focus?.()
   }
 })
 
