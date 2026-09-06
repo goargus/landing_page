@@ -1,12 +1,25 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import HeaderBanner from '../components/HeaderBanner.vue'
 import App from '../App.vue'
 
 const ROOT = resolve(import.meta.dirname, '../..')
 const readRoot = (relative) => readFileSync(resolve(ROOT, relative), 'utf8')
+
+const TAILWIND_BUILTIN_FONT_UTILITIES = new Set([
+  'sans', 'serif', 'mono',
+  'thin', 'extralight', 'light', 'normal', 'medium', 'semibold', 'bold', 'extrabold', 'black',
+])
+
+function collectVueFiles(dir) {
+  return readdirSync(dir).flatMap((entry) => {
+    const full = resolve(dir, entry)
+    if (statSync(full).isDirectory()) return entry === '__tests__' ? [] : collectVueFiles(full)
+    return full.endsWith('.vue') ? [full] : []
+  })
+}
 
 const mountHero = () =>
   mount(HeaderBanner, {
@@ -106,6 +119,29 @@ describe('layout stability', () => {
       expect(content, file).toMatch(/width="\d+"/)
       expect(content, file).toMatch(/height="\d+"/)
     }
+  })
+})
+
+describe('font utility classes', () => {
+  it('never references a font family the Tailwind config does not define', () => {
+    const config = readRoot('tailwind.config.js')
+    const families = [...config.matchAll(/^\s{6,}(\w+): \[/gm)].map((match) => match[1])
+    const offenders = []
+
+    for (const file of collectVueFiles(resolve(ROOT, 'src'))) {
+      const template = readFileSync(file, 'utf8').split('<style')[0]
+
+      for (const attribute of template.matchAll(/(?:^|\s):?class="([^"]*)"/g)) {
+        for (const token of attribute[1].split(/[\s'"{}:,]+/)) {
+          const name = token.startsWith('font-') && token.slice('font-'.length)
+          if (!name || name.startsWith('[')) continue
+          if (TAILWIND_BUILTIN_FONT_UTILITIES.has(name)) continue
+          if (!families.includes(name)) offenders.push(`${file.replace(ROOT, '')}: ${token}`)
+        }
+      }
+    }
+
+    expect(offenders).toEqual([])
   })
 })
 
