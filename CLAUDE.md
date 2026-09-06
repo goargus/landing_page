@@ -43,6 +43,26 @@ The client bundle needs none. The contact Function reads three variables from th
 
 To exercise the Function locally, run `npx wrangler pages dev dist --binding CONTACT_TO=you@example.com --binding RESEND_API_KEY=re_...` after a build.
 
+## Analytics
+
+Pageviews and Core Web Vitals are collected with Cloudflare Web Analytics. It sets no cookies and does no fingerprinting, so the site needs no consent banner.
+
+**How it is wired in**: nothing in this repo configures it. Cloudflare injects the beacon at the edge for the proxied zone, which covers every route with no build step, no environment variable and no repository secret. The site token, `4f8882ade5e441d6bd9bc0fc647eb243`, is a public identifier that ships in the HTML to every visitor. Confirming it from the command line needs a browser user agent, because Cloudflare skips edge injection for other clients:
+
+```bash
+curl -sL -A "Mozilla/5.0 (X11; Linux x86_64) Chrome/131.0.0.0" https://goargus.dev/ | grep cloudflareinsights
+```
+
+Do not add a second beacon to the build. Two beacons on one page count every visit twice.
+
+**Route changes**: the injected beacon runs in SPA mode (`"spa":2` in its `data-cf-beacon` payload), patching `history.pushState` and listening for `popstate`, so `vue-router` navigations are counted as separate pageviews. No `router.afterEach` hook is needed.
+
+**Custom events**: Cloudflare Web Analytics has no custom event API. Its FAQ says support may come later. A successful contact form submission is therefore recorded as a virtual pageview: `src/analytics.js` exports `trackFormSubmission()`, called from `ContactForm.vue` once the confirmation message is shown. It pushes the URL to `/contact/submitted` and immediately back to the real path, so the visitor and the router never move. Filter Top Pages by `/contact/submitted` for a submission count.
+
+**This virtual pageview is unverified.** Whether the beacon flushes a hit for two synchronous `pushState` calls has never been observed in production. It could not be tested from headless Chromium, where the beacon loads but reports nothing at all, including for ordinary pageviews. To confirm it, submit the form once on the live site and look for `/contact/submitted` under Top Pages. If it never appears, the likely fix is a short delay between the two calls so the beacon treats them as distinct navigations. If Cloudflare ships a real event API, drop this workaround.
+
+**Reading the dashboard**: Cloudflare dashboard, then the zone, then Analytics & Logs, then Web Analytics. The overview shows visits, pageviews, Top Pages, Referrers and Countries for the selected range. The Core Web Vitals tab splits LCP, INP and CLS from real visitors into Good, Needs Improvement and Poor at the 75th percentile, with a Debug View listing the worst elements. It needs a representative week of traffic before those percentiles mean anything.
+
 ## Build Configuration
 
 Production builds include:
