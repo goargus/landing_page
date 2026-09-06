@@ -222,6 +222,38 @@ describe('functions/api/contact', () => {
     consoleError.mockRestore()
   })
 
+  it('Returns success without sending when the honeypot field is filled', async () => {
+    const { response, body } = await call({ payload: { ...validPayload, website: 'http://spam.example' } })
+
+    expect(response.status).toBe(200)
+    expect(body).toEqual({ ok: true })
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('Treats a whitespace-only honeypot as empty', async () => {
+    const { response, body } = await call({ payload: { ...validPayload, website: '   ' } })
+
+    expect(response.status).toBe(200)
+    expect(body).toEqual({ ok: true })
+    expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('Sends normally when the honeypot field is absent', async () => {
+    const { response, body } = await call()
+
+    expect(response.status).toBe(200)
+    expect(body).toEqual({ ok: true })
+    expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('Sends normally when the honeypot field is an empty string', async () => {
+    const { response, body } = await call({ payload: { ...validPayload, website: '' } })
+
+    expect(response.status).toBe(200)
+    expect(body).toEqual({ ok: true })
+    expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
   it('Never leaks the credential to the caller', async () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
     fetch.mockResolvedValue({ ok: false, status: 401, text: async () => 'invalid api key' })

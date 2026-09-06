@@ -25,6 +25,13 @@ const MIN_LENGTHS = {
   message: 5,
 }
 
+const HONEYPOT_FIELD = "website"
+
+function isHoneypotFilled(payload) {
+  const value = payload[HONEYPOT_FIELD]
+  return typeof value === "string" && value.trim().length > 0
+}
+
 function json(body, status) {
   return new Response(JSON.stringify(body), {
     status,
@@ -119,6 +126,10 @@ async function handlePost(context) {
 
   if (payload === null || typeof payload !== "object" || Array.isArray(payload)) {
     return json({ error: "invalid_payload" }, 400)
+  }
+
+  if (isHoneypotFilled(payload)) {
+    return json({ ok: true }, 200)
   }
 
   const { invalid, clean } = validate(payload)
