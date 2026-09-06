@@ -35,12 +35,20 @@ async function submitFilledForm() {
   return wrapper
 }
 
+function clearThrottleState() {
+  try {
+    window.localStorage.removeItem('argus:contact:last-submit')
+  } catch {}
+}
+
 describe('ContactForm', () => {
   beforeEach(() => {
+    clearThrottleState()
     vi.stubGlobal('fetch', vi.fn())
   })
 
   afterEach(() => {
+    clearThrottleState()
     vi.unstubAllGlobals()
     vi.clearAllMocks()
   })
