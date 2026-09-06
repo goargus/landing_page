@@ -120,11 +120,11 @@ onUnmounted(() => {
 }
 
 .nav-font {
-  @apply text-xl xl:text-3xl text-gray font-normal;
+  @apply text-xl xl:text-3xl text-argus-gray font-normal;
 }
 
 .home-link {
-  @apply text-gray font-inter text-xl xl:text-[30px] leading-normal;
+  @apply text-argus-gray font-inter text-xl xl:text-[30px] leading-normal;
 }
 
 .menu-item {
@@ -147,7 +147,7 @@ onUnmounted(() => {
 }
 
 .hamburger-line {
-  @apply w-6 h-0.5 bg-gray rounded-full transition-all duration-300 ease-in-out;
+  @apply w-6 h-0.5 bg-argus-gray rounded-full transition-all duration-300 ease-in-out;
   margin: 3px 0;
 }
 
@@ -166,7 +166,7 @@ onUnmounted(() => {
 }
 
 .close-button {
-  @apply text-gray hover:text-lightGreen transition-colors duration-300 p-2 rounded-full shadow-3xl;
+  @apply text-argus-gray hover:text-lightGreen transition-colors duration-300 p-2 rounded-full shadow-3xl;
 }
 
 .mobile-menu-content {
@@ -174,7 +174,7 @@ onUnmounted(() => {
 }
 
 .mobile-menu-item {
-  @apply text-2xl text-gray font-inter relative transition-all duration-300 opacity-0;
+  @apply text-2xl text-argus-gray font-inter relative transition-all duration-300 opacity-0;
   animation: fadeInUp 0.5s ease-out forwards;
 }
 

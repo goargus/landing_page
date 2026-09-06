@@ -218,7 +218,7 @@ onUnmounted(() => {
 }
 
 .modal-client {
-  @apply text-gray mt-2;
+  @apply text-argus-gray mt-2;
 }
 
 .modal-description {
@@ -238,7 +238,7 @@ onUnmounted(() => {
 }
 
 .tech-badge {
-  @apply text-sm px-4 py-1.5 rounded-full bg-snowGray text-gray;
+  @apply text-sm px-4 py-1.5 rounded-full bg-snowGray text-argus-gray;
 }
 
 .modal-cta {
@@ -265,8 +265,8 @@ onUnmounted(() => {
 
 .cta-button--secondary {
   @apply bg-snowGray text-txtcolor;
-  @apply hover:bg-gray/10;
-  @apply focus:ring-gray;
+  @apply hover:bg-argus-gray/10;
+  @apply focus:ring-argus-gray;
 }
 
 /* Modal Transition */

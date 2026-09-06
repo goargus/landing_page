@@ -8,7 +8,7 @@
       <img :src="imageSrc" :alt="imageAlt" class="h-12 w-12 md:h-16 md:w-16" />
     </div>
     <h3 class="mt-8 md:mt-12 text-xl md:text-2xl font-bold text-txtcolor">{{ title }}</h3>
-    <p class="mt-4 md:mt-6 text-gray text-base md:text-lg">{{ description }}</p>
+    <p class="mt-4 md:mt-6 text-argus-gray text-base md:text-lg">{{ description }}</p>
   </div>
 </template>
 

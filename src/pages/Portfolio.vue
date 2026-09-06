@@ -134,7 +134,7 @@ const closeProjectModal = () => {
 }
 
 .empty-state p {
-  @apply text-gray text-lg mb-4;
+  @apply text-argus-gray text-lg mb-4;
 }
 
 .empty-state-button {
@@ -156,7 +156,7 @@ const closeProjectModal = () => {
 }
 
 .cta-text {
-  @apply text-lg text-gray mb-10 max-w-lg mx-auto;
+  @apply text-lg text-argus-gray mb-10 max-w-lg mx-auto;
 }
 
 .cta-button {

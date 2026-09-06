@@ -163,7 +163,7 @@ const handleTouchEnd = () => {
 }
 
 .gallery-caption {
-  @apply text-center text-gray text-sm mt-3;
+  @apply text-center text-argus-gray text-sm mt-3;
 }
 
 .gallery-dots {
@@ -171,7 +171,7 @@ const handleTouchEnd = () => {
 }
 
 .gallery-dot {
-  @apply w-2 h-2 rounded-full bg-gray/30;
+  @apply w-2 h-2 rounded-full bg-argus-gray/30;
   @apply transition-all duration-300;
   @apply focus:outline-none focus:ring-2 focus:ring-lightGreen focus:ring-offset-2;
 }

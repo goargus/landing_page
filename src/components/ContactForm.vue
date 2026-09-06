@@ -58,67 +58,64 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        name: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: ""
-      },
-      fields: [
-        { name: "name", type: "text", placeholder: "Nombre", pattern: "^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$", title: "El nombre solo puede contener letras y espacios" },
-        { name: "lastName", type: "text", placeholder: "Apellido", pattern: "^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$", title: "El apellido solo puede contener letras y espacios" },
-        { name: "email", type: "email", placeholder: "Correo", title: "Por favor ingresa un correo electrónico válido" },
-        { name: "phone", type: "tel", placeholder: "Teléfono", pattern: "^[\\d\\s+()\\-]+$", title: "El teléfono solo puede contener números, espacios, +, paréntesis y guiones" },
-      ],
-      message: "",
-      isSuccess: false,
-      isSubmitting: false
-    };
-  },
-  methods: {
-    async sendEmail() {
-      this.isSubmitting = true;
-      this.message = "";
+<script setup>
+import { ref } from "vue";
 
-      try {
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            name: this.form.name,
-            lastName: this.form.lastName,
-            email: this.form.email,
-            phone: this.form.phone,
-            message: this.form.message
-          })
-        });
+const form = ref({
+  name: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: ""
+});
 
-        if (!response.ok) {
-          throw new Error(`El servidor respondió ${response.status}`);
-        }
+const fields = [
+  { name: "name", type: "text", placeholder: "Nombre", pattern: "^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$", title: "El nombre solo puede contener letras y espacios" },
+  { name: "lastName", type: "text", placeholder: "Apellido", pattern: "^[A-Za-zÁÉÍÓÚáéíóúÑñ\\s]+$", title: "El apellido solo puede contener letras y espacios" },
+  { name: "email", type: "email", placeholder: "Correo", title: "Por favor ingresa un correo electrónico válido" },
+  { name: "phone", type: "tel", placeholder: "Teléfono", pattern: "^[\\d\\s+()\\-]+$", title: "El teléfono solo puede contener números, espacios, +, paréntesis y guiones" },
+];
 
-        this.message = "¡Mensaje enviado con éxito!";
-        this.isSuccess = true;
-        this.form = { name: "", lastName: "", email: "", phone: "", message: "" };
-      } catch (error) {
-        this.message = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
-        this.isSuccess = false;
-        console.error("Contact form error:", error);
-      } finally {
-        this.isSubmitting = false;
+const message = ref("");
+const isSuccess = ref(false);
+const isSubmitting = ref(false);
 
-        setTimeout(() => {
-          this.message = "";
-        }, 5000);
-      }
+async function sendEmail() {
+  isSubmitting.value = true;
+  message.value = "";
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: form.value.name,
+        lastName: form.value.lastName,
+        email: form.value.email,
+        phone: form.value.phone,
+        message: form.value.message
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`El servidor respondió ${response.status}`);
     }
+
+    message.value = "¡Mensaje enviado con éxito!";
+    isSuccess.value = true;
+    form.value = { name: "", lastName: "", email: "", phone: "", message: "" };
+  } catch (error) {
+    message.value = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+    isSuccess.value = false;
+    console.error("Contact form error:", error);
+  } finally {
+    isSubmitting.value = false;
+
+    setTimeout(() => {
+      message.value = "";
+    }, 5000);
   }
-};
+}
 </script>
 
 <style scoped>
@@ -128,7 +125,7 @@ export default {
 }
 
 .txtbox {
-  @apply w-full px-4 py-3 text-gray rounded-full shadow-neumorphic border-0 text-center bg-snowGray;
+  @apply w-full px-4 py-3 text-argus-gray rounded-full shadow-neumorphic border-0 text-center bg-snowGray;
   @apply text-lg md:text-[22px] leading-7;
   @apply transition-all duration-300 ease-out;
   @apply focus:outline-none focus:ring-2 focus:ring-lightGreen focus:ring-offset-2 focus:ring-offset-snowGray;
@@ -140,7 +137,7 @@ export default {
 }
 
 .txtboxmsg {
-  @apply w-full h-[180px] md:h-[246px] px-4 py-6 md:py-8 text-gray rounded-3xl shadow-neumorphic border-0 bg-snowGray;
+  @apply w-full h-[180px] md:h-[246px] px-4 py-6 md:py-8 text-argus-gray rounded-3xl shadow-neumorphic border-0 bg-snowGray;
   @apply text-lg md:text-[22px] leading-7 text-center;
   @apply transition-all duration-300 ease-out resize-none;
   @apply focus:outline-none focus:ring-2 focus:ring-lightGreen focus:ring-offset-2 focus:ring-offset-snowGray;
@@ -152,11 +149,11 @@ export default {
 }
 
 .buttonsend {
-  @apply w-full sm:w-3/5 py-3 mt-2 text-gray rounded-full shadow-3xl border-white border-2;
+  @apply w-full sm:w-3/5 py-3 mt-2 text-argus-gray rounded-full shadow-3xl border-white border-2;
   @apply transition-all duration-300 ease-out;
   @apply hover:bg-lightGreen hover:text-white hover:border-lightGreen hover:shadow-lg;
   @apply focus:outline-none focus:ring-2 focus:ring-lightGreen focus:ring-offset-2;
-  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-argus-gray;
 }
 
 .message-feedback {

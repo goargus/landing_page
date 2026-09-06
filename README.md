@@ -1,7 +1,16 @@
-# Vue 3 + Vite
+# GoArgus
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Landing page for GoArgus, built with Vue 3, Vite and Tailwind CSS. The contact form posts to a Cloudflare Pages Function that sends through Resend.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Development
 
-[![Deployment Status]](https://github.com/goargus/landing_page/actions/workflows/deploy.yml)
+```bash
+npm install
+npm run dev       # start the dev server
+npm run build     # production build
+npm run preview   # preview the production build
+npm run lint      # run ESLint
+npm run test      # run Vitest
+```
+
+See `CLAUDE.md` for architecture notes and environment variable details.

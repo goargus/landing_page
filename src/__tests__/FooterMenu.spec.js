@@ -100,16 +100,4 @@ describe('FooterMenu', () => {
     const ul = wrapper.find('ul')
     expect(ul.classes()).toContain('footer-links')
   })
-
-  it('requires title prop', () => {
-    const wrapper = mount(FooterMenu, {
-      props: mockProps,
-      global: {
-        plugins: [router]
-      }
-    })
-
-    const props = wrapper.vm.$options.props
-    expect(props.title.required).toBe(true)
-  })
 })

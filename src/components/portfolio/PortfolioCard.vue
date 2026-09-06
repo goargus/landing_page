@@ -120,7 +120,7 @@ const remainingTechCount = computed(() =>
 }
 
 .card-description {
-  @apply text-sm text-gray mb-4;
+  @apply text-sm text-argus-gray mb-4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -132,7 +132,7 @@ const remainingTechCount = computed(() =>
 }
 
 .tech-badge {
-  @apply text-xs px-3 py-1 rounded-full bg-snowGray text-gray;
+  @apply text-xs px-3 py-1 rounded-full bg-snowGray text-argus-gray;
 }
 
 .tech-badge--more {

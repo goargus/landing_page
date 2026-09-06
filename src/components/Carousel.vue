@@ -157,7 +157,7 @@ const handleTouchEnd = () => {
 }
 
 .dot-indicator {
-  @apply w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray/30;
+  @apply w-2 h-2 md:w-3 md:h-3 rounded-full bg-argus-gray/30;
   @apply transition-all duration-300;
 }
 
