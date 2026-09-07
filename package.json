@@ -30,7 +30,7 @@
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "^10.10.0",
     "js-yaml": "^5.4.1",
-    "jsdom": "^26.0.0",
+    "jsdom": "^30.0.1",
     "postcss": "^8.4.45",
     "tailwindcss": "^4.3.3",
     "terser": "^5.51.2",
